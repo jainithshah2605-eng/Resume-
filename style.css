@@ -1,0 +1,622 @@
+/* ---------- Dark colour palette (CSS variables) ---------- */
+:root {
+  --bg: #0a0a0f;          /* page background */
+  --surface: #14161c;     /* cards */
+  --border: #23262f;
+  --cyan: #22d3ee;        /* accent */
+  --text: #e6e8ec;
+  --muted: #9aa0ab;
+}
+
+/* ---------- Universal selector: reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- Element selectors: typography ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.7;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--cyan);
+}
+
+p {
+  color: var(--muted);
+}
+
+/* ---------- Navigation bar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: rgba(10, 10, 15, 0.85);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  color: var(--text);
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navbar li a {
+  position: relative;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.navbar li a:hover {
+  color: var(--cyan);
+}
+
+/* Animated underline on nav links */
+.navbar li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: var(--cyan);
+  transition: width 0.3s;
+}
+
+.navbar li a:hover::after {
+  width: 100%;
+}
+
+/* ---------- ID selector: hero section ---------- */
+#home {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 8rem 1.5rem 7rem;
+}
+
+/* Glowing background orb that floats gently */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 500px;
+  margin: -250px 0 0 -250px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
+  z-index: -1;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Hero text appears one after the other */
+#home .tagline  { animation: fadeUp 0.8s ease both; }
+#home h1        { animation: fadeUp 0.8s ease 0.2s both; }
+#home .subtitle { animation: fadeUp 0.8s ease 0.4s both; }
+#home .intro    { animation: fadeUp 0.8s ease 0.6s both; }
+#home .hero-buttons { animation: fadeUp 0.8s ease 0.8s both; }
+
+.tagline {
+  color: var(--cyan);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  margin: 0.5rem 0 1.2rem;
+}
+
+.highlight {
+  color: var(--cyan);
+}
+
+.intro {
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  margin: 0 0.4rem;
+  background-color: var(--cyan);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid var(--cyan);
+  border-radius: 30px;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(34, 211, 238, 0.35);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--cyan);
+}
+
+.btn-outline:hover {
+  background-color: rgba(34, 211, 238, 0.1);
+}
+
+/* ---------- Stats strip ---------- */
+#stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.stat {
+  padding: 1.5rem 1rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  border-color: var(--cyan);
+}
+
+.number {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: var(--cyan);
+}
+
+/* ---------- Content sections ---------- */
+#about,
+#expertise,
+#highlights,
+#experience,
+#contact {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem;
+}
+
+/* About: photo on the left, text on the right */
+.about-layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.about-text .about-label {
+  color: var(--cyan);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Photo with a cyan offset outline and a soft glow */
+.photo-frame {
+  position: relative;
+  max-width: 340px;
+  margin: 0 auto;
+  animation: float 6s ease-in-out infinite;
+}
+
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--cyan);
+  border-radius: 16px;
+  z-index: 0;
+  transition: top 0.3s, left 0.3s;
+}
+
+.photo-frame:hover::before {
+  top: 8px;
+  left: 8px;
+}
+
+.photo-frame img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(34, 211, 238, 0.15);
+}
+
+#contact {
+  text-align: center;
+}
+
+#contact p {
+  margin-bottom: 1.5rem;
+}
+
+.contact-email a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.contact-email a:hover {
+  text-decoration: underline;
+}
+
+.section-title {
+  position: relative;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  font-size: 2.2rem;
+}
+
+/* Small cyan line under each section heading */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 0.6rem auto 0;
+  background-color: var(--cyan);
+  border-radius: 2px;
+}
+
+/* ---------- Feature cards ---------- */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 1.8rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--cyan);
+  box-shadow: 0 10px 30px rgba(34, 211, 238, 0.12);
+}
+
+.icon {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+  border-radius: 20px;
+}
+
+/* ---------- Timeline ---------- */
+.timeline {
+  max-width: 750px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  border-left: 2px solid var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 1.2rem 1.5rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.timeline-item:hover {
+  transform: translateX(8px);
+  border-color: var(--cyan);
+}
+
+/* Cyan dot on the timeline line */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2.65rem;
+  top: 1.6rem;
+  width: 14px;
+  height: 14px;
+  background-color: var(--cyan);
+  border: 3px solid var(--bg);
+  border-radius: 50%;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+footer p {
+  font-size: 0.9rem;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-25px); }
+}
+
+/* Name gets a slowly moving cyan shine */
+#home h1 {
+  background: linear-gradient(90deg, var(--text), var(--cyan), var(--text));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fadeUp 0.8s ease 0.2s both, shine 5s linear 1s infinite;
+}
+
+/* Main button gently pulses */
+#home .btn:not(.btn-outline) {
+  animation: pulse 2.5s ease-in-out 1.5s infinite;
+}
+
+/* Stat tiles pop in one by one */
+.stat {
+  animation: popIn 0.6s ease backwards;
+}
+.stat:nth-child(1) { animation-delay: 1s; }
+.stat:nth-child(2) { animation-delay: 1.2s; }
+.stat:nth-child(3) { animation-delay: 1.4s; }
+
+/* Cyan dot on the timeline pulses */
+.timeline-item::before {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* Icon badge wiggles when its card is hovered */
+.card:hover .icon {
+  animation: wiggle 0.5s ease;
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.5); }
+  50%      { box-shadow: 0 0 0 12px rgba(34, 211, 238, 0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.6); }
+  50%      { box-shadow: 0 0 0 7px rgba(34, 211, 238, 0); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  25%      { transform: rotate(-8deg); }
+  75%      { transform: rotate(8deg); }
+}
+
+/* Sections fade in as you scroll (only in browsers that support it) */
+@supports (animation-timeline: view()) {
+
+  /* Whole sections pull up into place as they enter the screen */
+  .reveal {
+    animation: pullUp linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+
+  /* Cards rise one after another (even cards start a little later) */
+  .card {
+    animation: pullUp linear backwards;
+    animation-timeline: view();
+    animation-range: entry 5% entry 50%;
+  }
+  .card:nth-child(even) {
+    animation-range: entry 15% entry 60%;
+  }
+
+  /* Timeline items slide in from the left */
+  .timeline-item {
+    animation: slideIn linear backwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+
+  /* Progress bar at the top grows as you scroll down the page */
+  .scroll-progress {
+    display: block;
+    animation: grow linear;
+    animation-timeline: scroll();
+  }
+}
+
+@keyframes pullUp {
+  from { opacity: 0; transform: translateY(80px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Bouncing "scroll down" indicator in the hero */
+.scroll-down {
+  display: inline-block;
+  margin-top: 3.5rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  animation: fadeUp 0.8s ease 1.2s both, bounce 1.8s ease-in-out 2s infinite;
+}
+
+.scroll-down:hover {
+  color: var(--cyan);
+}
+
+/* Little mouse icon with a moving dot */
+.scroll-down span {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 40px;
+  margin: 0 auto 0.6rem;
+  border: 2px solid var(--cyan);
+  border-radius: 14px;
+}
+
+.scroll-down span::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  background-color: var(--cyan);
+  border-radius: 2px;
+  animation: wheel 1.8s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(10px); }
+}
+
+@keyframes wheel {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(14px); }
+}
+
+/* Scroll progress bar (hidden unless the browser supports scroll animations) */
+.scroll-progress {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 3px;
+  background-color: var(--cyan);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ---------- Responsive design ---------- */
+@media (max-width: 800px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 700px) {
+  h1 {
+    font-size: 2.6rem;
+  }
+  .subtitle {
+    font-size: 1.4rem;
+  }
+  .navbar {
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1rem;
+  }
+  .navbar ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .btn {
+    margin: 0.4rem 0;
+  }
+}
